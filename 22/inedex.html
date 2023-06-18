@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Задания</title>
+  <style>
+    .accordion {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .accordion h3 {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .accordion div {
+      padding: 10px;
+      display: none;
+    }
+
+    .accordion div p {
+      margin: 0;
+    }
+
+    #autocomplete-input {
+      width: 300px;
+      padding: 5px;
+    }
+
+    #autocomplete-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+    }
+
+    #autocomplete-list li {
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    #autocomplete-list li:hover {
+      background-color: #f1f1f1;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #f1f1f1;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+<h1>Задания</h1>
+
+<h2>Задание 1: Виджет accordion</h2>
+<div class="accordion">
+  <h3>Заголовок 1</h3>
+  <div>
+    <p>Содержимое 1</p>
+  </div>
+  <h3>Заголовок 2</h3>
+  <div>
+    <p>Содержимое 2</p>
+  </div>
+  <h3>Заголовок 3</h3>
+  <div>
+    <p>Содержимое 3</p>
+  </div>
+</div>
+
+<h2>Задание 2: Виджет autocomplete</h2>
+<input type="text" id="autocomplete-input" placeholder="Введите название страны">
+<ul id="autocomplete-list">
+  <li>Австралия</li>
+  <li>Австрия</li>
+  <li>Албания</li>
+  <li>Алжир</li>
+  <li>Ангола</li>
+  <!-- Другие страны... -->
+</ul>
+
+<h2>Задание 3: Оформление кнопок</h2>
+<button id="el1">Кнопка 1</button>
+<button id="el2">Кнопка 2</button>
+<button id="el3">Кнопка 3</button>
+
+<script>
+  const input = document.getElementById('autocomplete-input');
+  const list = document.getElementById('autocomplete-list');
+
+  input.addEventListener('input', function() {
+    const searchValue = input.value.toLowerCase();
+    const countries = list.getElementsByTagName('li');
+
+    for (let i = 0; i < countries.length; i++) {
+      const country = countries[i].textContent.toLowerCase();
+
+      if (country.includes(searchValue)) {
+        countries[i].style.display = 'block';
+      } else {
+        countries[i].style.display = 'none';
+      }
+    }
+
+    list.style.display = 'block';
+  });
+
+  const accordionItems = document.getElementsByClassName('accordion');
+
+  for (let i = 0; i < accordionItems.length; i++) {
+    const accordionItem = accordionItems[i];
+
+    accordionItem.addEventListener('click', function() {
+      this.classList.toggle('active');
+
+      const panel = this.nextElementSibling;
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+      }
+    });
+  }
+
+  const buttons = document.getElementsByTagName('button');
+
+  for (let i = 0; i < buttons.length; i++) {
+    const button = buttons[i];
+
+    button.addEventListener('click', function() {
+      alert('Вы нажали на кнопку ' + this.id);
+    });
+  }
+</script>
+</body>
+</html>
+

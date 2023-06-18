@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Page</title>
+</head>
+<body>
+<div>
+  <div>
+    <h3>Heading 1</h3>
+  </div>
+  <div>
+    <h3>Heading 2</h3>
+  </div>
+  <div>
+    <h3>Heading 3</h3>
+  </div>
+</div>
+<p><span>Text 1</span></p>
+<p><span>Text 2</span></p>
+<p><span>Text 3</span></p>
+
+<p><span>Text 4</span></p>
+<p><span>Text 5</span></p>
+<p><span>Text 6</span></p>
+
+<p><span>Text 7</span></p>
+<p><span>Text 8</span></p>
+<p><span>Text 9</span></p>
+
+<img src="image1.jpg" alt="Image 1">
+<img src="image2.jpg" alt="Image 2">
+<img src="image3.jpg" alt="Image 3">
+
+<script>
+  // Wrap each <h3> in <div>
+  var headings = document.getElementsByTagName('h3');
+  for (var i = 0; i < headings.length; i++) {
+    var heading = headings[i];
+    var div = document.createElement('div');
+    heading.parentNode.insertBefore(div, heading);
+    div.appendChild(heading);
+  }
+
+  // Remove <p> wrappers around <span>
+  var spans = document.getElementsByTagName('span');
+  for (var i = 0; i < spans.length; i++) {
+    var span = spans[i];
+    var parent = span.parentNode;
+    if (parent.tagName === 'P') {
+      parent.parentNode.insertBefore(span, parent);
+      parent.parentNode.removeChild(parent);
+    }
+  }
+
+  // Insert <span> before and after each <p>
+  var paragraphs = document.getElementsByTagName('p');
+  for (var i = 0; i < paragraphs.length; i++) {
+    var paragraph = paragraphs[i];
+    var spanBefore = document.createElement('span');
+    var spanAfter = document.createElement('span');
+    spanBefore.textContent = '!!!';
+    spanAfter.textContent = '???';
+    paragraph.parentNode.insertBefore(spanBefore, paragraph);
+    paragraph.parentNode.insertBefore(spanAfter, paragraph.nextSibling);
+  }
+
+  // Get the src attribute of the image with id="www"
+  var imageSrc = document.querySelector('img[id="www"]').getAttribute('src');
+  console.log(imageSrc);
+
+  // Get the src attributes of all images on the page
+  var images = document.getElementsByTagName('img');
+  for (var i = 0; i < images.length; i++) {
+    var image = images[i];
+    var src = image.getAttribute('src');
+    alert(src);
+  }
+</script>
+</body>
+</html>
